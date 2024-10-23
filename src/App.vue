@@ -43,7 +43,7 @@ watch([
   if (settingsStore.settings.app.enableDynamicTitle && settingsStore.title) {
     // const title = typeof settingsStore.title === 'function' ? settingsStore.title() : settingsStore.title
     // document.title = `${title} - ${import.meta.env.VITE_APP_TITLE}`
-    const title  = '西安科技大学计算机学院双创中心'
+    const title = '西安科技大学计算机学院双创中心'
     document.title = '西安科技大学计算机学院双创中心'
   }
 

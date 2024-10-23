@@ -1,25 +1,22 @@
 import api from '../index'
-import {data} from "autoprefixer";
 
 export default {
-  //登录
+  // 登录
   login: (data: {
     account: string
-    password: string,
-  }) => api.post('/userLogin', data)
-  ,
+    password: string
+  }) => api.post('/userLogin', data),
   register: (data: {
-    account: string,
-    captcha: string,
-    password: string,
-    checkPassword: string,
+    account: string
+    captcha: string
+    password: string
+    checkPassword: string
     userId: string
-  }) => api.post('/register', data)
-  ,
-  sendCode:(data:{
-    account:string,
-    userId:string
-  })=>api.post('api/code/simple/send'),
+  }) => api.post('/register', data),
+  sendCode: (data: {
+    account: string
+    userId: string
+  }) => api.post('api/code/simple/send'),
   // 获取权限
   permission: () => api.get('user/permission', {
     baseURL: '/mock/',

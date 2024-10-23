@@ -8,7 +8,8 @@ defineOptions({
 
 const settingsStore = useSettingsStore()
 </script>
-<!--搜索栏-->
+
+<!-- 搜索栏 -->
 <template>
   <span class="flex-center cursor-pointer px-2 py-1" @click="eventBus.emit('global-search-toggle')">
     <SvgIcon v-if="settingsStore.mode === 'mobile'" name="i-ri:search-line" />

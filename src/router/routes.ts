@@ -2,9 +2,9 @@ import { setupLayouts } from 'virtual:meta-layouts'
 import generatedRoutes from 'virtual:generated-pages'
 import type { RouteRecordRaw } from 'vue-router'
 import MultilevelMenuExample from './modules/multilevel.menu.compete.ts'
+import MultilevelMenuTeacher from './modules/mult.menu.teacher.ts'
 import type { Route } from '#/global'
 import useSettingsStore from '@/store/modules/settings'
-import MultilevelMenuTeacher from './modules/mult.menu.teacher.ts'
 // 固定路由（默认路由）
 const constantRoutes: RouteRecordRaw[] = [
   {
@@ -12,7 +12,7 @@ const constantRoutes: RouteRecordRaw[] = [
     name: 'login',
     component: () => import('@/views/login.vue'),
     meta: {
-      title: '登录',
+      title: '主页',
     },
   },
   {
@@ -32,7 +32,7 @@ const systemRoutes: RouteRecordRaw[] = [
     component: () => import('@/layouts/index.vue'),
     meta: {
       // title: () => useSettingsStore().settings.home.title,
-      title :'西安科技大学计算机学院双创中心',
+      title: '西安科技大学计算机学院双创中心',
       breadcrumb: false,
     },
     children: [
@@ -59,7 +59,7 @@ const systemRoutes: RouteRecordRaw[] = [
   },
 ]
 // 动态路由（异步路由、导航栏路由）
-const asyncRoutes : Route.recordMainRaw[]= [
+const asyncRoutes: Route.recordMainRaw[] = [
   {
     meta: {
       title: '计算机类竞赛一览表',
@@ -67,7 +67,7 @@ const asyncRoutes : Route.recordMainRaw[]= [
     },
     children: [
       MultilevelMenuExample,
-      MultilevelMenuTeacher
+      MultilevelMenuTeacher,
     ],
   },
 
@@ -80,7 +80,6 @@ const constantRoutesByFilesystem = generatedRoutes.filter((item) => {
 const asyncRoutesByFilesystem = setupLayouts(generatedRoutes.filter((item) => {
   return item.meta?.enabled !== false && item.meta?.constant !== true && item.meta?.layout !== false
 }))
-
 
 export {
   constantRoutes,

@@ -37,6 +37,7 @@ watch(scrollTop, (val, oldVal) => {
   scrollOnHide.value = settingsStore.settings.topbar.mode === 'sticky' && val > oldVal && val > topbarHeight.value
 })
 </script>
+
 <template>
   <div
     class="topbar-container" :class="{

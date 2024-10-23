@@ -2,9 +2,9 @@ import axios from 'axios'
 
 import qs from 'qs'
 import Message from 'vue-m-message'
+import { ElMessage } from 'element-plus'
 import useUserStore from '@/store/modules/user'
-import {ElMessage} from "element-plus";
-import router from "@/router";
+import router from '@/router'
 
 const api = axios.create({
   baseURL: (import.meta.env.DEV && import.meta.env.VITE_OPEN_PROXY === 'true') ? '/proxy/' : import.meta.env.VITE_APP_API_BASEURL,
@@ -21,7 +21,6 @@ api.interceptors.request.use(
       if (userStore.isLogin) {
         request.headers.Token = userStore.token
       }
-
     }
     // 是否将 POST 请求参数进行字符串化处理
     if (request.method === 'post') {
@@ -51,7 +50,7 @@ api.interceptors.response.use(
   },
   (error) => {
     let message = error.message
-    if (error.response.status===401){
+    if (error.response.status === 401) {
       ElMessage.error('请先登录')
       return router.push('/login')
     }

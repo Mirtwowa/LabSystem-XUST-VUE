@@ -3,9 +3,7 @@ import useRouteStore from './route'
 import useMenuStore from './menu'
 import router from '@/router'
 import apiUser from '@/api/modules/user'
-import api from "@/api";
-import login from '@/api/modules/user.ts'
-import {ElMessage} from "element-plus";
+
 const useUserStore = defineStore(
   // 唯一ID
   'user',
@@ -19,12 +17,13 @@ const useUserStore = defineStore(
     const avatar = ref(localStorage.avatar ?? '')
     const permissions = ref<string[]>([])
     const isLogin = computed(() => {
-      if (token.value!=0) {
+      if (token.value != 0) {
         return true
-      }else if(status.value=='用户名错误'||status.value=='密码错误'){
+      }
+      else if (status.value == '用户名错误' || status.value == '密码错误') {
         return false
-      }else
-      return false
+      }
+      else { return false }
     })
 
     // 登录
@@ -33,7 +32,7 @@ const useUserStore = defineStore(
       password: string
     }) {
       const res = await apiUser.login(data)
-      localStorage.setItem('status',res.data.message)
+      localStorage.setItem('status', res.data.message)
       localStorage.setItem('account', res.data.account)
       localStorage.setItem('token', res.data.data)
       localStorage.setItem('avatar', res.data.avatar)
@@ -46,10 +45,10 @@ const useUserStore = defineStore(
       captcha: string
       password: string
       checkPassword: string
-      userId:string
+      userId: string
     }) {
       const res = await apiUser.register(data)
-      localStorage.setItem('status',res.data.message)
+      localStorage.setItem('status', res.data.message)
       localStorage.setItem('token', res.data.data)
       account.value = res.data.account
       token.value = res.data.token

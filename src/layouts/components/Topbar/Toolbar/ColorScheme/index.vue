@@ -35,7 +35,8 @@ function toggleColorScheme(event: MouseEvent) {
   })
 }
 </script>
-<!--主题颜色选择-->
+
+<!-- 主题颜色选择 -->
 <template>
   <HDropdown class="flex-center cursor-pointer px-2 py-1">
     <SvgIcon

@@ -34,7 +34,8 @@ function pathCompile(path: string) {
   return toPath(route.params)
 }
 </script>
-<!--面包屑导航-->
+
+<!-- 面包屑导航 -->
 <template>
   <Breadcrumb v-if="settingsStore.mode === 'pc' && settingsStore.settings.app.routeBaseOn !== 'filesystem'" class="breadcrumb whitespace-nowrap px-2">
     <TransitionGroup name="breadcrumb">

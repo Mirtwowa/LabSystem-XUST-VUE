@@ -1,5 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router'
-import MultMenuTeacher from "@/router/modules/mult.menu.teacher.ts";
+
 function Layout() {
   return import('@/layouts/index.vue')
 }
@@ -25,7 +25,7 @@ const routes: RouteRecordRaw = {
     {
       path: 'team',
       name: 'multilevelMenuExample2',
-      component : () => import('@/views/multilevel_menu_example/team.vue'),
+      component: () => import('@/views/multilevel_menu_example/team.vue'),
       meta: {
         title: '参赛队伍',
       },

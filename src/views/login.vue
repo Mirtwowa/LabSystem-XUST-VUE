@@ -11,10 +11,8 @@ import { ElMessage } from 'element-plus'
 import Copyright from '@/layouts/components/Copyright/index.vue'
 import useSettingsStore from '@/store/modules/settings'
 import useUserStore from '@/store/modules/user'
-import login from '@/api/modules/user.ts'
-import register from '@/api/modules/user.ts'
-import api from "@/api";
-import axios from "axios";
+import api from '@/api'
+
 defineOptions({
   name: 'Login',
 })
@@ -26,7 +24,7 @@ const settingsStore = useSettingsStore()
 const userStore = useUserStore()
 
 const banner = new URL('../assets/images/login-banner.png', import.meta.url).href
-const logo = new URL('../assets/images/logo.jpg', import.meta.url).href
+const logo = new URL('../assets/images/logo.png', import.meta.url).href
 const title = '双创中心'
 
 // 登录方式，default 账号密码登录，qrcode 扫码登录
@@ -39,7 +37,7 @@ const redirect = ref(route.query.redirect?.toString() ?? settingsStore.settings.
 
 // 登录
 const loginFormRef = ref<FormInstance>()
-//登陆表单
+// 登陆表单
 const loginForm = ref({
   account: localStorage.login_account || '',
   password: '',
@@ -50,7 +48,7 @@ const loginRules = ref<FormRules>({
     {
       required: true,
       trigger: 'blur',
-      message: '请输入邮箱'
+      message: '请输入邮箱',
     },
   ],
   password: [
@@ -58,7 +56,7 @@ const loginRules = ref<FormRules>({
     { min: 6, max: 18, trigger: 'blur', message: '密码长度为6到18位' },
   ],
 })
-const handleLogin= async()=> {
+async function handleLogin() {
   loginFormRef.value && loginFormRef.value.validate((valid) => {
     if (valid) {
       loading.value = true
@@ -73,11 +71,11 @@ const handleLogin= async()=> {
         router.push(redirect.value)
       }).catch(() => {
         loading.value = false
-        ElMessage.error("用户名或者密码错误")
+        ElMessage.error('用户名或者密码错误')
       })
     }
-  }
-)
+  },
+  )
 }
 
 // 注册
@@ -87,19 +85,19 @@ const registerForm = ref({
   captcha: '',
   password: '',
   checkPassword: '',
-  userId:new Date().getTime().toString()
+  userId: new Date().getTime().toString(),
 })
 const sentCodeForm = ref({
-  account : registerForm.value.account,
-  userId : registerForm.value.userId
+  account: registerForm.value.account,
+  userId: registerForm.value.userId,
 })
 const registerRules = ref<FormRules>({
   account: [
     { required: true, trigger: 'blur', message: '请输入邮箱' },
     {
-      type:'email',
-      message:'请输入正确邮箱地址',
-      trigger:['blur','change'],
+      type: 'email',
+      message: '请输入正确邮箱地址',
+      trigger: ['blur', 'change'],
     },
   ],
   captcha: [
@@ -123,7 +121,7 @@ const registerRules = ref<FormRules>({
     },
   ],
 })
-const handleRegister = async ()=>{
+async function handleRegister() {
   registerFormRef.value && registerFormRef.value.validate((valid) => {
     if (valid) {
       loading.value = true
@@ -132,7 +130,7 @@ const handleRegister = async ()=>{
         router.push(redirect.value)
       }).catch(() => {
         loading.value = false
-        ElMessage.error("验证码错误")
+        ElMessage.error('验证码错误')
       })
     }
   })
@@ -175,7 +173,7 @@ function testAccount(account: string) {
   handleLogin()
 }
 
-/*const sendCode = async(account:string,userId:number)=>{
+/* const sendCode = async(account:string,userId:number)=>{
   const url= `/api/code/simple/send/mail/${account}/user-id/${userId}`
   await api.post(url).then(() => {
     loading.value = false
@@ -183,17 +181,16 @@ function testAccount(account: string) {
     loading.value = false
     ElMessage.error("错误!")
   })
-}*/
+} */
 function sendCode() {
-  const url= `/api/code/simple/send`
+  const url = `/api/code/simple/send`
   const res = {
-    account:registerForm.value.account,
-    userId:registerForm.value.userId
+    account: registerForm.value.account,
+    userId: registerForm.value.userId,
   }
-  api.post(url,res)
+  api.post(url, res)
   console.log(registerForm.value)
 }
-
 </script>
 
 <template>
@@ -208,7 +205,7 @@ function sendCode() {
         <div class="mb-6">
           <HTabList
             v-model="loginType" :options="[
-              { label: '账号密码登录', value: 'default' },
+              { label: '密码登录', value: 'default' },
               { label: '扫码登录', value: 'qrcode' },
             ]"
           />
@@ -261,15 +258,6 @@ function sendCode() {
             </div>
           </div>
         </template>
-        <div style="margin-top: 20px; margin-bottom: -20px; text-align: center;">
-          <ElDivider>演示账号一键登录</ElDivider>
-          <ElButton type="primary" size="small" plain @click="testAccount('admin')">
-            admin
-          </ElButton>
-          <ElButton size="small" plain @click="testAccount('test')">
-            test
-          </ElButton>
-        </div>
       </ElForm>
       <ElForm v-show="formType === 'register'" ref="registerFormRef" :model="registerForm" :rules="registerRules" class="login-form" auto-complete="on">
         <div class="title-container">
@@ -291,7 +279,9 @@ function sendCode() {
                 <SvgIcon name="i-ic:baseline-verified-user" />
               </template>
               <template #append>
-                <ElButton @click.prevent="sendCode">发送验证码</ElButton>
+                <ElButton @click.prevent="sendCode">
+                  发送验证码
+                </ElButton>
               </template>
             </ElInput>
           </ElFormItem>
@@ -448,8 +438,8 @@ function sendCode() {
       position: absolute;
       top: 20px;
       left: 20px;
-      height: 30px;
-      border-radius: 4px;
+      height: 50px;
+      border-radius: 50%;
       box-shadow: var(--el-box-shadow-light);
     }
   }

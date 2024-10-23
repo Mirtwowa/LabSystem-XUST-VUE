@@ -1,9 +1,7 @@
-import boxen from 'boxen'
-import picocolors from 'picocolors'
 import type { Plugin } from 'vite'
 
 export default function appInfo(): Plugin {
-  /*return {
+  /* return {
     name: 'appInfo',
     apply: 'serve',
     async buildStart() {
@@ -21,5 +19,5 @@ export default function appInfo(): Plugin {
         ),
       )
     },
-  }*/
+  } */
 }

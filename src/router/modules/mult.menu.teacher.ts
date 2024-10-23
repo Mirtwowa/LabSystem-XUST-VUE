@@ -1,8 +1,8 @@
 import type { RouteRecordRaw } from 'vue-router'
+
 function Layout() {
   return import('@/layouts/index.vue')
 }
-
 
 const routes: RouteRecordRaw = {
   path: '/mult_menu_teacher',
@@ -25,7 +25,7 @@ const routes: RouteRecordRaw = {
     {
       path: 'teacher2',
       name: 'multilevelMenuTeacher2',
-      component : () =>import('@/views/mult_menu_teacher/teacher.vue'),
+      component: () => import('@/views/mult_menu_teacher/teacher.vue'),
       meta: {
         title: '贾澎涛',
       },
